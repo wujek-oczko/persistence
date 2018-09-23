@@ -1,11 +1,10 @@
 package com.wujq.persistence.model;
 
-import java.io.Serializable;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
+import java.io.Serializable;
 
 @Entity
 public class Child implements Serializable {

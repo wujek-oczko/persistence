@@ -107,11 +107,11 @@ public class PersistenceConfig {
         hibernateProperties.setProperty("hibernate.dialect", env.getProperty("hibernate.dialect"));
 
         hibernateProperties.setProperty("hibernate.show_sql", "true");
-        // hibernateProperties.setProperty("hibernate.format_sql", "true");
+        hibernateProperties.setProperty("hibernate.format_sql", "true");
         // hibernateProperties.setProperty("hibernate.globally_quoted_identifiers", "true");
 
         // Envers properties
-        hibernateProperties.setProperty("org.hibernate.envers.audit_table_suffix", env.getProperty("envers.audit_table_suffix"));
+//        hibernateProperties.setProperty("org.hibernate.envers.audit_table_suffix", env.getProperty("envers.audit_table_suffix"));
 
         return hibernateProperties;
     }

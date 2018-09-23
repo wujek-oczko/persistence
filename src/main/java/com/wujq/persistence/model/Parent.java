@@ -1,13 +1,12 @@
 package com.wujq.persistence.model;
 
-import java.io.Serializable;
-
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
+import java.io.Serializable;
 
 @Entity
 public class Parent implements Serializable {
@@ -16,7 +15,7 @@ public class Parent implements Serializable {
     @GeneratedValue
     private long id;
 
-    @OneToOne(cascade = { CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.DETACH })
+    @OneToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.DETACH})
     @JoinColumn(name = "child_fk")
     private Child child;
 

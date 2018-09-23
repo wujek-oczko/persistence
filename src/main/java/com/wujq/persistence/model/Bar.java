@@ -25,61 +25,28 @@ import java.util.Set;
 public class Bar implements Serializable {
 
     private static Logger logger = Logger.getLogger(Bar.class);
-
-    public enum OPERATION {
-        INSERT, UPDATE, DELETE;
-        private String value;
-
-        OPERATION() {
-            value = toString();
-        }
-
-        public String getValue() {
-            return value;
-        }
-
-        public static OPERATION parse(final String value) {
-            OPERATION operation = null;
-            for (final OPERATION op : OPERATION.values()) {
-                if (op.getValue().equals(value)) {
-                    operation = op;
-                    break;
-                }
-            }
-            return operation;
-        }
-    }
-
-    ;
-
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
     private int id;
 
+    ;
     @Column(name = "name")
     private String name;
-
     @OneToMany(mappedBy = "bar", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @OrderBy(clause = "NAME DESC")
     // @NotAudited
     private Set<Foo> fooSet = Sets.newHashSet();
-
     @Column(name = "operation")
     private String operation;
-
     @Column(name = "timestamp")
     private long timestamp;
-
     @Column(name = "created_date", updatable = false, nullable = false)
     private long createdDate;
-
     @Column(name = "modified_date")
     private long modifiedDate;
-
     @Column(name = "created_by")
     private String createdBy;
-
     @Column(name = "modified_by")
     private String modifiedBy;
 
@@ -93,11 +60,11 @@ public class Bar implements Serializable {
         this.name = name;
     }
 
-    // API
-
     public Set<Foo> getFooSet() {
         return fooSet;
     }
+
+    // API
 
     public void setFooSet(final Set<Foo> fooSet) {
         this.fooSet = fooSet;
@@ -121,6 +88,10 @@ public class Bar implements Serializable {
 
     public OPERATION getOperation() {
         return OPERATION.parse(operation);
+    }
+
+    public void setOperation(final String operation) {
+        this.operation = operation;
     }
 
     public void setOperation(final OPERATION operation) {
@@ -165,10 +136,6 @@ public class Bar implements Serializable {
 
     public void setModifiedBy(final String modifiedBy) {
         this.modifiedBy = modifiedBy;
-    }
-
-    public void setOperation(final String operation) {
-        this.operation = operation;
     }
 
     @Override
@@ -224,6 +191,30 @@ public class Bar implements Serializable {
     private void audit(final OPERATION operation) {
         setOperation(operation);
         setTimestamp((new Date()).getTime());
+    }
+
+    public enum OPERATION {
+        INSERT, UPDATE, DELETE;
+        private String value;
+
+        OPERATION() {
+            value = toString();
+        }
+
+        public static OPERATION parse(final String value) {
+            OPERATION operation = null;
+            for (final OPERATION op : OPERATION.values()) {
+                if (op.getValue().equals(value)) {
+                    operation = op;
+                    break;
+                }
+            }
+            return operation;
+        }
+
+        public String getValue() {
+            return value;
+        }
     }
 
 }
