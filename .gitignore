@@ -1,0 +1,10 @@
+.idea
+*.iml
+imls
+target
+ios
+android
+jira-api
+
+# Avoid ignoring Maven wrapper jar file (.jar files are usually ignored)
+!/.mvn/wrapper/maven-wrapper.jar
